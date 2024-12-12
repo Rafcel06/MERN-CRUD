@@ -1,4 +1,3 @@
-
 Deploying a MERN in LINUX 
 
 1. Update and Upgrade Your System
@@ -56,6 +55,8 @@ Deploying a MERN in LINUX
 
    In your main.js of Backend add this code 
 
+
+
    if (process.env.NODE_ENV === 'production') {
        app.use(express.static(path.join(__dirname, '../frontend/build')));
 
@@ -68,7 +69,11 @@ Deploying a MERN in LINUX
     app.get('/', (req, res) => res.send('Please set to production'));
    }
 
+
+
   The Code above allow you to load the frontend UI using backend 
+
+
 
 5. Navigate to frontend folder then type this command 
 
@@ -128,7 +133,3 @@ APACHE2 set up
    - pm2 start main.js 
    - pm2 startup
    - pm2 save
-
-
-
-
