@@ -1,139 +1,142 @@
 Deploying a MERN in LINUX 
 
-1. Update and Upgrade Your System
+Deploying MERN STACK in LINUX 
 
-   - sudo apt update
-   - sudo apt upgrade
+1. Update and Upgrade System
+
+  -  sudo apt update
+  -  sudo apt upgrade
+
 
 2. Install Node.js and npm
 
+  - curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+  - sudo apt install -y nodejs
 
-   - curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-   - sudo apt install -y nodejs
+Verify the installation:
 
-   Verify the installation:
-
-   - node -v
-   - npm -v
+  - node -v
+  - npm -v
 
 
-3. Install MySQL
+3. Install MySQL and Configure Database
 
-   - sudo apt install -y mysql-server
+  - sudo apt install -y mysql-server
 
-   Secure MySQL installation:
+  Secure your MySQL installation:
 
-   - sudo mysql_secure_installation
+  - sudo mysql_secure_installation
+ 
+ Log in to MySQL to create a database:
 
-   After installation login to your mysql remote server and create database and table 
 
-   - mysql -u root -p
+  - mysql -u root -p
 
-   - CREATE DATABASE users;
-   - USE users
+Create a database and table for your application:
+
+  - CREATE DATABASE users;
+  - USE users;
+
+     CREATE TABLE person (
+         id int(11) NOT NULL,
+         first_name varchar(50) NOT NULL,
+         last_name varchar(50) NOT NULL,
+         email varchar(100) NOT NULL,
+         archived int(11) DEFAULT 0,
+         inactive int(11) DEFAULT 0,
+         archived_by varchar(255) DEFAULT NULL,
+         deleted_by varchar(255) DEFAULT NULL,
+         dt_inserted datetime DEFAULT NULL,
+         dt_updated datetime DEFAULT NULL,
+         dt_deleted datetime DEFAULT NULL
+         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+ - EXIT;
+
+ - 
+4. Project Folder Structure
+  
+    Folder/
+   │
+   ├── frontend/
+   └── backend/
    
-   CREATE TABLE `person` (
-   `id` int(11) NOT NULL,
-   `first_name` varchar(50) NOT NULL,
-   `last_name` varchar(50) NOT NULL,
-   `email` varchar(100) NOT NULL,
-   `archived` int(11) DEFAULT 0,
-   `inactive` int(11) DEFAULT 0,
-   `archived_by` varchar(255) DEFAULT NULL,
-   `deleted_by` varchar(255) DEFAULT NULL,
-   `dt_inserted` datetime DEFAULT NULL,
-   `dt_updated` datetime DEFAULT NULL,
-   `dt_deleted` datetime DEFAULT NULL,) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;   
-   
-   EXIT;
-     
-
-4. Your Folder Struture must be this 
-
-   Folder >  frontend
-             backend
-
-   In your main.js of Backend add this code 
-
-
+5. Backend Configuration (main.js)
+In your main.js file of the backend, include the following code to serve the frontend build for server-side rendering:
 
    if (process.env.NODE_ENV === 'production') {
-       app.use(express.static(path.join(__dirname, '../frontend/build')));
+        app.use(express.static(path.join(__dirname, '../frontend/build')));
 
-   app.get('*', (req, res) =>
-      res.sendFile(
-        path.resolve(__dirname, '../', 'frontend/', 'build', 'index.html')
-    )
-   );
+        app.get('*', (req, res) => 
+        res.sendFile(path.resolve(__dirname, '../', 'frontend', 'build', 'index.html'))
+     );
    } else {
-    app.get('/', (req, res) => res.send('Please set to production'));
+        app.get('/', (req, res) => res.send('Please set to production')); 
    }
 
-
-
-  The Code above allow you to load the frontend UI using backend for Server Side Rendering
-
-
-
-5. Navigate to frontend folder then type this command 
-
-   - npm install --force
-  
-   Then navigate to backend and type this command 
-
-  - npm install
-
-
-APACHE2 set up  
-
-6. Install and Configure Apache2 
+6. Install Frontend and Backend Dependencies
    
-   Install Apache2
+   Navigate to the frontend directory and install dependencies:
 
+   - cd frontend
+   - npm install --force
+   - 
+  Then, navigate to the backend directory and install dependencies:
+
+
+   - cd ../backend
+   - npm install
+  
+     
+7. Install Apache2 and Set Up Reverse Proxy
 
    - sudo apt install -y apache2
 
-     Install mod_proxy Modules
-     Enable the necessary Apache modules
+
+  - sudo a2enmod proxy
+  - sudo a2enmod proxy_http
+  - sudo systemctl restart apache2
+  - 
+Configure Apache VirtualHost:
+Create a new Apache configuration file for your site:
 
 
-   - sudo a2enmod proxy
-   - sudo a2enmod proxy_http
-   - sudo systemctl restart apache2
-
-   Configure Apache as a Reverse Proxy
-   Create a new Apache configuration file for your site:
+ - sudo nano /etc/apache2/sites-available/your-app.conf
+ - Add the following configuration to set up Apache as a reverse proxy for your MERN App
 
 
-   - sudo nano /etc/apache2/sites-available/your-app.conf
+  <VirtualHost *:80>
+    ServerAdmin yourdomain.com
+    ServerName yourdomain.com
 
-   Add the following configuration:
+    DocumentRoot /var/www/your-app  # This is the DocumentRoot for your application the place where your project folder found
 
+    ProxyPreserveHost On
+    ProxyPass / http://localhost:4001/
+    ProxyPassReverse / http://localhost:4001/
 
-   <VirtualHost *:80>
-       ServerAdmin yourdomain.com
-       ServerName yourdomain.com
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+ </VirtualHost>
 
-       ProxyPreserveHost On
-       ProxyPass / http://localhost:4001/
-       ProxyPassReverse / http://localhost:4001/
-
-       ErrorLog ${APACHE_LOG_DIR}/error.log
-       CustomLog ${APACHE_LOG_DIR}/access.log combined
-   </VirtualHost>
-
-   Enable your site and restart Apache:
+ 
+  After configuration enable the .conf you created that confugure your application
 
 
-   - sudo a2ensite your-app.conf
-   - sudo systemctl restart apache2
+  - sudo a2ensite your-app.conf
+  - sudo systemctl restart apache2
 
-7. Install PM2	 
 
-   - sudo npm install -g pm2
+    
+8. Install PM2 and Start Application
+Install PM2 globally to manage your Node.js application:
 
-   Start your application with PM2
 
-   - pm2 start main.js 
-   - pm2 startup
-   - pm2 save
+  - sudo npm install -g pm2
+
+Start your application with PM2:
+
+
+  - pm2 start backend/main.js  # Make sure the correct path to your main.js is used
+  - pm2 startup
+  - pm2 save
