@@ -49,7 +49,7 @@ Deploying MERN STACK in LINUX
    EXIT;
      
 
-4. You Folder Struture must be this 
+4. Your Folder Struture must be like this 
 
    Folder >   frontend
               backend
@@ -68,7 +68,7 @@ Deploying MERN STACK in LINUX
     app.get('/', (req, res) => res.send('Please set to production'));
    }
 
-  The Code above allow you to load the frontend UI using backend 
+  The Code above allow you to load the frontend UI using backend for Server Side Rendering
 
 5. Navigate to frontend folder then type this command 
 
