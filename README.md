@@ -142,6 +142,24 @@ Start your application with PM2:
   - pm2 save
 
 
+9. If you already have domain and pointed it in your linux remote ubuntu IP 
+
+Start Installing Certbot 
+
+  - sudo apt install certbot python3-certbot-apache
+  - sudo certbot --apache
+
+Enter Your email to know the expiration of SSL agree to term and condition 
+This will Automatically configure your Apache server for SSL.
+
+For Automatic SSL Certificate Renewal
+
+  - sudo certbot renew --dry-run
+
+
+ 
+
+
 
 
 
