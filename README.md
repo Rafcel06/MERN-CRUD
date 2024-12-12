@@ -79,7 +79,7 @@ In your main.js file of the backend, include the following code to serve the fro
 
    - cd frontend
    - npm install --force
-   - 
+   
   Then, navigate to the backend directory and install dependencies:
 
 
