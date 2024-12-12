@@ -1,5 +1,5 @@
 
-Deploying a MERN in LINUX 
+Deploying MERN STACK in LINUX 
 
 1. Update and Upgrade Your System
 
