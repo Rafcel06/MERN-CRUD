@@ -1,0 +1,260 @@
+
+body {
+  padding: 5em;
+
+}
+
+.table-container {
+  margin-top: 3em;
+  width: 100%;
+  overflow-x: auto; 
+}
+
+.responsive-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.responsive-table th, .responsive-table td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.responsive-table th {
+  background-color: #f4f4f4;
+}
+
+@media screen and (max-width: 600px) {
+  .responsive-table th, .responsive-table td {
+    padding: 8px;
+  }
+
+  .responsive-table td {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .responsive-table td:before {
+    content: attr(data-label);
+    font-weight: bold;
+    margin-right: 10px;
+  }
+
+  .responsive-table th {
+    display: none; 
+  }
+}
+
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+ /* custom hooks modal css */
+
+
+ #modal-container {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background: rgba(26, 26, 26, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.modal-header {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  margin: 1em 0;
+}
+
+.modal-button-container {
+  height: 50px;
+  display: flex;
+  justify-content: flex-end;
+  column-gap: 0.5em;
+  border: 1px solid #000;
+}
+
+
+.modal-content {
+  padding: 1em;
+  background: #fff;
+  height: auto;
+  width: auto;
+  border-radius: var(--formInputRadius);
+}
+
+
+.inputGroup {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 1em 0;
+  position: relative;
+  display: flex;
+  column-gap: 3px;
+  /* flex-direction: column; */
+  border: 1px solid #000;
+  border-radius: 5px;
+  width: 100%;
+}
+
+ .input-fields {
+  font-size: 100%;
+  padding: 0.8em 0;
+  outline: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  width: 100%;
+  z-index: 555;
+  /* border: 1px solid red; */
+}
+
+ .input-labels {
+  font-size: 100%;
+  position: absolute;
+  top: -2px;
+  left: 22px;
+  padding: 0.8em;
+  width: auto;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  color: var(--iconColor);
+}
+
+.input-fields:focus ~ .input-labels , .input-fields:valid ~ .input-labels {
+  transform: translateY(-50%) scale(.9);
+  margin: 0em;
+  margin-left: -0.5em;
+  padding: 0.4em;
+  background-color: var(--formBg);
+}
+
+.errors-message {
+  color:var(--warning);
+  margin: 0;
+  padding: 0;
+}
+
+
+.form-group {
+  margin-bottom: 10px;
+
+}
+
+#input-column {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 5px;
+  
+}
+
+.input-contain {
+  
+  height: 120px;
+  width: 10em;
+  padding-right: 3px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5em;
+
+}
+
+.form-control {
+  padding:7px;
+
+}
+.form-control:focus {
+  outline: none;
+  border: none;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  color: #000;
+  font-weight: bold;
+  margin-bottom: 1px;
+  margin: 5px 0;
+}
+
+.form-group:first-child {
+  display: flex;
+  align-items: center;
+}
+
+
+
+.form-control {
+  height: 35px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius:5px;
+}
+
+.forms-button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+.button {
+  height: 40px;
+  width: 90px;  
+  border: none;
+  background: rgb(0, 195, 255);
+  border-radius: 5px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 0.2em;
+
+}
+
+#edit, #delete {
+  height: 30px;
+  margin: 0 auto;
+  cursor: pointer;
+
+  
+}
+
+#edit {
+  background: rgb(1, 124, 48);
+  margin-right: 0.2em;
+}
+
+#delete {
+  background: rgb(172, 41, 1);
+}
+
+.action-contain {
+  width: 200px;
+}
+
+
+.errors-message {
+  color:rgb(238, 3, 3) ;
+}
+
+
+.button-modal {
+  height: 40px;
+  width: 90px;  
+  border: none;
+  border-radius: 5px;
+  color: #000000;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 0.2em;
+} 
