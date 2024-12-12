@@ -48,7 +48,7 @@ Deploying a MERN in LINUX
    EXIT;
      
 
-4. You Folder Struture must be this 
+4. Your Folder Struture must be this 
 
    Folder >  frontend
              backend
@@ -71,13 +71,17 @@ Deploying a MERN in LINUX
 
 
 
-  The Code above allow you to load the frontend UI using backend 
+  The Code above allow you to load the frontend UI using backend for Server Side Rendering
 
 
 
 5. Navigate to frontend folder then type this command 
 
    - npm install --force
+  
+   Then navigate to backend and type this command 
+
+  - npm install
 
 
 APACHE2 set up  
