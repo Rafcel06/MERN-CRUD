@@ -22,11 +22,11 @@ Verify the installation:
 
   - sudo apt install -y mysql-server
 
-  Secure your MySQL installation:
+Secure your MySQL installation:
 
   - sudo mysql_secure_installation
  
- Log in to MySQL to create a database:
+Log in to MySQL to create a database:
 
 
   - mysql -u root -p
@@ -52,7 +52,7 @@ Create a database and table for your application:
 
  - EXIT;
 
- - 
+  
 4. Project Folder Structure
   
     Folder/
@@ -80,7 +80,7 @@ In your main.js file of the backend, include the following code to serve the fro
    - cd frontend
    - npm install --force
    
-  Then, navigate to the backend directory and install dependencies:
+Then, navigate to the backend directory and install dependencies:
 
 
    - cd ../backend
@@ -95,7 +95,8 @@ In your main.js file of the backend, include the following code to serve the fro
   - sudo a2enmod proxy
   - sudo a2enmod proxy_http
   - sudo systemctl restart apache2
-  - 
+
+   
 Configure Apache VirtualHost:
 Create a new Apache configuration file for your site:
 
@@ -119,7 +120,7 @@ Create a new Apache configuration file for your site:
  </VirtualHost>
 
  
-  After configuration enable the .conf you created that confugure your application
+After configuration enable the .conf you created that confugure your application
 
 
   - sudo a2ensite your-app.conf
