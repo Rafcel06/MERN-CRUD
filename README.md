@@ -106,6 +106,7 @@ Create a new Apache configuration file for your site:
 
 
   <VirtualHost *:80>
+    ServerAdmin webmaster@localhost
     ServerAdmin yourdomain.com
     ServerName yourdomain.com
 
