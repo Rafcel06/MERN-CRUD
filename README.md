@@ -121,7 +121,8 @@ Run  `<VirtualHost *:80>
  
 After configuration enable the .conf you created that confugure your application
 
-Run  `sudo a2ensite your-app.conf` 
+Run  
+     `sudo a2ensite your-app.conf` 
      `sudo systemctl restart apache2`
 
 
