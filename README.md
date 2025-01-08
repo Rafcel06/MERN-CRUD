@@ -59,101 +59,102 @@ Run `CREATE DATABASE users;`
    └── backend/
    
 5. Backend Configuration (main.js)
-In your main.js file of the backend, include the following code to serve the frontend build for server-side rendering:
 
-   if (process.env.NODE_ENV === 'production') {
+In your main.js file of the backend, include the following code to serve the frontend build for server-side rendering
+
+Run  `if (process.env.NODE_ENV === 'production') {
         app.use(express.static(path.join(__dirname, '../frontend/build')));
 
         app.get('*', (req, res) => 
         res.sendFile(path.resolve(__dirname, '../', 'frontend', 'build', 'index.html'))
-     );
-   } else {
-        app.get('/', (req, res) => res.send('Please set to production')); 
-   }
+      );
+      } else {
+         app.get('/', (req, res) => res.send('Please set to production')); 
+      }`
 
 6. Install Frontend and Backend Dependencies
    
-   Navigate to the frontend directory and install dependencies:
+   Navigate to the frontend directory and install dependencies
 
-   - cd frontend
-   - npm install --force
+Run  `cd frontend`
+     `npm install --force`
    
-Then, navigate to the backend directory and install dependencies:
+Then, navigate to the backend directory and install dependencies
 
-
-   - cd ../backend
-   - npm install
+Run  `cd ../backend`
+     `npm install`
   
      
 7. Install Apache2 and Set Up Reverse Proxy
 
-   - sudo apt install -y apache2
+Run  `sudo apt install -y apache2`
 
-
-  - sudo a2enmod proxy
-  - sudo a2enmod proxy_http
-  - sudo systemctl restart apache2
+     `sudo a2enmod proxy`
+     `sudo a2enmod proxy_http`
+     `sudo systemctl restart apache2`
 
    
 Configure Apache VirtualHost:
 Create a new Apache configuration file for your site:
 
 
- - sudo nano /etc/apache2/sites-available/your-app.conf
- - Add the following configuration to set up Apache as a reverse proxy for your MERN App
+Run  `sudo nano /etc/apache2/sites-available/your-app.conf`
+      
+Add the following configuration to set up Apache as a reverse proxy for your MERN App
 
 
-  <VirtualHost *:80>
-    ServerAdmin webmaster@localhost
-    ServerAdmin yourdomain.com
-    ServerName yourdomain.com
+Run  `<VirtualHost *:80>
+       ServerAdmin webmaster@localhost
+       ServerAdmin yourdomain.com
+       ServerName yourdomain.com
 
-    DocumentRoot /var/www/your-app  # This is the DocumentRoot for your application the place where your project folder found
+       DocumentRoot /var/www/your-app  # This is the DocumentRoot for your application the place where your project folder found
 
-    ProxyPreserveHost On
-    ProxyPass / http://localhost:4001/
-    ProxyPassReverse / http://localhost:4001/
+       ProxyPreserveHost On
+       ProxyPass / http://localhost:4001/
+       ProxyPassReverse / http://localhost:4001/
 
-    ErrorLog ${APACHE_LOG_DIR}/error.log
-    CustomLog ${APACHE_LOG_DIR}/access.log combined
- </VirtualHost>
+       ErrorLog ${APACHE_LOG_DIR}/error.log
+       CustomLog ${APACHE_LOG_DIR}/access.log combined
+      </VirtualHost>`
 
  
 After configuration enable the .conf you created that confugure your application
 
-
-  - sudo a2ensite your-app.conf
-  - sudo systemctl restart apache2
+Run  `sudo a2ensite your-app.conf` 
+     `sudo systemctl restart apache2`
 
 
     
 8. Install PM2 and Start Application
+
 Install PM2 globally to manage your Node.js application:
 
-
-  - sudo npm install -g pm2
+Run  `sudo npm install -g pm2`
 
 Start your application with PM2:
 
+Run  `pm2 start backend/main.js`  
 
-  - pm2 start backend/main.js  # Make sure the correct path to your main.js is used
-  - pm2 startup
-  - pm2 save
+# Make sure the correct path to your main.js is used
+
+Run  `pm2 startup`
+     `pm2 save`
 
 
 9. If you already have domain and pointed it in your linux remote ubuntu IP 
 
 Start Installing Certbot 
 
-  - sudo apt install certbot python3-certbot-apache
-  - sudo certbot --apache
+Run  `sudo apt install certbot python3-certbot-apache`
+     `sudo certbot --apache`
 
 Enter Your email to know the expiration of SSL agree to term and condition 
 This will Automatically configure your Apache server for SSL.
 
 For Automatic SSL Certificate Renewal
 
-  - sudo certbot renew --dry-run
+Run  `sudo certbot renew --dry-run`
 
 
  
