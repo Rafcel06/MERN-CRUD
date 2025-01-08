@@ -6,37 +6,35 @@ Update and Upgrade System
 Run  `sudo apt update`
      `sudo apt upgrade`
 
+Install Node.js and npm
 
-2. Install Node.js and npm
-
-  - curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-  - sudo apt install -y nodejs
+Run  `url -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -`
+     `sudo apt install -y nodejs`
 
 Verify the installation:
+  
+Run  `node -v`
+     `npm -v`
 
-  - node -v
-  - npm -v
 
+Install MySQL and Configure Database
 
-3. Install MySQL and Configure Database
-
-  - sudo apt install -y mysql-server
+Run  `sudo apt install -y mysql-server`
 
 Secure your MySQL installation:
 
-  - sudo mysql_secure_installation
+Run  `sudo mysql_secure_installation`
  
 Log in to MySQL to create a database:
 
+Run  `mysql -u root -p`
 
-  - mysql -u root -p
+Create a database and table for your application
 
-Create a database and table for your application:
+Run `CREATE DATABASE users;`
+    `USE users;`
 
-  - CREATE DATABASE users;
-  - USE users;
-
-     CREATE TABLE person (
+    `CREATE TABLE person (
          id int(11) NOT NULL,
          first_name varchar(50) NOT NULL,
          last_name varchar(50) NOT NULL,
@@ -48,9 +46,9 @@ Create a database and table for your application:
          dt_inserted datetime DEFAULT NULL,
          dt_updated datetime DEFAULT NULL,
          dt_deleted datetime DEFAULT NULL
-         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;`
 
- - EXIT;
+    `EXIT;`
 
   
 4. Project Folder Structure
