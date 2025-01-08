@@ -1,10 +1,10 @@
 
 Deploying MERN STACK in LINUX 
 
-1. Update and Upgrade System
+Update and Upgrade System
 
-  -  sudo apt update
-  -  sudo apt upgrade
+Run  `sudo apt update`
+     `sudo apt upgrade`
 
 
 2. Install Node.js and npm
